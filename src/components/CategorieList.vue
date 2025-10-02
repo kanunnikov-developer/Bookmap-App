@@ -3,6 +3,7 @@ import { useCategoriesStore } from '@/stores/categories.store';
 import { onMounted } from 'vue';
 import ButtonIcon from './ButtonIcon.vue';
 import IconPlus from '@/icons/IconPlus.vue';
+import { RouterLink } from 'vue-router';
 
 const store = useCategoriesStore();
 
@@ -14,7 +15,7 @@ onMounted(() => {
 <template>
   <ul class="categorie-list">
     <li v-for="category in store.categories" :key="category.id" class="categorie-list__item">
-      <a href="`/${item.alias}`">{{ category.name }}</a>
+      <RouterLink to="`/main/${item.alias}`">{{ category.name }}</RouterLink>
     </li>
     <li>
       <ButtonIcon @click="store.createCategory()">
