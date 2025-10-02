@@ -15,7 +15,9 @@ onMounted(() => {
 <template>
   <ul class="categorie-list">
     <li v-for="category in store.categories" :key="category.id" class="categorie-list__item">
-      <RouterLink to="`/main/${item.alias}`">{{ category.name }}</RouterLink>
+      <RouterLink active-class="active-link" :to="`/main/${category.alias}`">{{
+        category.name
+      }}</RouterLink>
     </li>
     <li>
       <ButtonIcon @click="store.createCategory()">
@@ -49,7 +51,8 @@ onMounted(() => {
   color: var(--color-fg);
 }
 
-.categorie-list__item a:hover {
+.categorie-list__item a:hover,
+.categorie-list__item a.active-link {
   font-size: 24px;
   font-weight: 700;
 }

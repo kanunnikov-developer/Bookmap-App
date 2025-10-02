@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import type { Category } from '@/interfaces/category.interface';
 import { http } from '@/api';
 import { API_ROUTES } from '@/api';
+import { v4 as uuidv4 } from 'uuid';
 
 export const useCategoriesStore = defineStore('categories', () => {
   const categories = ref<Category[]>([]);
@@ -15,7 +16,7 @@ export const useCategoriesStore = defineStore('categories', () => {
   async function createCategory() {
     const { data } = await http.post<Category>(API_ROUTES.categories, {
       name: 'Новая категория',
-      alias: 'new',
+      alias: uuidv4(),
     });
     categories.value.push(data);
   }

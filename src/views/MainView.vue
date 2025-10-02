@@ -26,6 +26,14 @@ import { RouterView } from 'vue-router';
 }
 
 .nav {
-  min-width: 400px;
+  min-width: 320px;
+}
+
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  height: 300px;
 }
 </style>
