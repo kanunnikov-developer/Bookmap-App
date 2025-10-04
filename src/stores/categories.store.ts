@@ -36,5 +36,17 @@ export const useCategoriesStore = defineStore('categories', () => {
     return;
   }
 
-  return { categories, fetchCategories, createCategory, getCategoryByAlias, updateCategory };
+  async function deleteCategory(id: number) {
+    await client().delete<Category>(API_ROUTES.categories + '/' + id);
+    fetchCategories();
+  }
+
+  return {
+    categories,
+    fetchCategories,
+    createCategory,
+    getCategoryByAlias,
+    updateCategory,
+    deleteCategory,
+  };
 });
