@@ -21,6 +21,14 @@ export const useCategoriesStore = defineStore('categories', () => {
     categories.value.push(data);
   }
 
+  async function updateCategory(name: string, alias: string, id: number) {
+    await client().put<Category>(API_ROUTES.categories + '/' + id, {
+      name,
+      alias,
+    });
+    fetchCategories();
+  }
+
   function getCategoryByAlias(alias: string | string[]): Category | undefined {
     if (typeof alias == 'string') {
       return categories.value.find((c) => c.alias == alias);
@@ -28,5 +36,5 @@ export const useCategoriesStore = defineStore('categories', () => {
     return;
   }
 
-  return { categories, fetchCategories, createCategory, getCategoryByAlias };
+  return { categories, fetchCategories, createCategory, getCategoryByAlias, updateCategory };
 });
